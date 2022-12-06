@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import ModalImage from "react-modal-image";
-
 const UserItem = ({ user: { login, avatar_url } }) => {
   return (
     <div className="card shadow-md compact side bg-base-100">
@@ -11,11 +9,6 @@ const UserItem = ({ user: { login, avatar_url } }) => {
         <div>
           <div className="avatar">
             <div className="rounded-full shadow w-14 h-14">
-              {/* <ModalImage
-                small={avatar_url}
-                medium={avatar_url}
-                alt="Profile"
-              /> */}
               <img src={avatar_url} alt="Profile" />
             </div>
           </div>
@@ -24,7 +17,7 @@ const UserItem = ({ user: { login, avatar_url } }) => {
           <h2 className="card-title">{login}</h2>
           <Link
             className="text-base-content text-opacity-40"
-            to={`/users/${login}`}
+            to={`/user/${login}`}
           >
             Visit Profile
           </Link>
