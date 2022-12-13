@@ -5,4 +5,9 @@
 .custom-card-image .card-image-full:before {
     border-radius: 0.5rem;
     opacity: 0.45;
+    filter: brightness(1.75);
+}
+
+.card.image-full {
+    border-radius: 20px !important;
 }
