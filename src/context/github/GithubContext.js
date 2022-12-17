@@ -11,6 +11,7 @@ export const GithubProvider = ({ children }) => {
   const initialState = {
     users: [],
     user: {},
+    repos: [],
     loading: false,
   };
 
@@ -72,6 +73,23 @@ export const GithubProvider = ({ children }) => {
     }
   };
 
+  const getUserRepos = async (username) => {
+    setLoading();
+
+    const response = await fetch(`${GITHUB_URL}/users/${username}/repos`);
+
+    if (response.status === 404) {
+      window.location = "/notfound";
+    } else {
+      const data = await response.json();
+
+      dispatch({
+        type: "GET_REPOS",
+        payload: data,
+      });
+    }
+  };
+
   // Set Loading
   const setLoading = () => dispatch({ type: "SET_LOADING" });
 
@@ -81,9 +99,11 @@ export const GithubProvider = ({ children }) => {
         users: state.users,
         loading: state.loading,
         user: state.user,
+        repos: state.repos,
         getUser,
         searchUsers,
         clearUsers,
+        getUserRepos
       }}
     >
       {children}

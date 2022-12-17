@@ -6,12 +6,13 @@ import GithubContext from "../context/github/GithubContext";
 import RepoList from "../components/repos/RepoList";
 
 function User() {
-  const { getUser, user, loading } = useContext(GithubContext);
+  const { getUser, user, repos, loading, getUserRepos } = useContext(GithubContext);
 
   const params = useParams();
 
   useEffect(() => {
     getUser(params.login);
+    getUserRepos(params.login);
   }, []);
 
   const {
@@ -160,7 +161,7 @@ function User() {
           </div>
         </div>
 
-        {/* <RepoList repos={repos} /> */}
+        <RepoList repos={repos} />
       </div>
     </>
   );
